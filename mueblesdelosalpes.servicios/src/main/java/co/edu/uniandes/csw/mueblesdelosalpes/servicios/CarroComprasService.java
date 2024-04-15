@@ -62,7 +62,7 @@ public class CarroComprasService {
      */
     
     @GET
-    @Path("/muebles")
+    @Path("/getTodosLosMuebles")
     public List<Mueble> getTodosLosMuebles() {
         return carroEjb.getInventario();
  

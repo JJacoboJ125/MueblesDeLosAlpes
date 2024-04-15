@@ -37,6 +37,7 @@ public class CatalogoService {
      * @return la lista JSON con los muebles de MDLA.
   
      */
+    
     @GET
     @Path("muebles/")
     public List<Mueble> getTodosLosMuebles() {

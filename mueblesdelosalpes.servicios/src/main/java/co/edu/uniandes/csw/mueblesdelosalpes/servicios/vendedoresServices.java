@@ -24,12 +24,11 @@ import javax.ws.rs.core.MediaType;
  *
  * @author USER
  */
-@Path("/vendedores")
+@Path("/sellers")
 @Stateless
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class vendedoresServices {
-
     private IServicioVendedoresMockRemote vendedorEjb;
 
     @POST
@@ -50,9 +49,8 @@ public class vendedoresServices {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
 
-    public List<Vendedor> eliminaVendedores(List<Vendedor> lv, @PathParam("id") int id) throws OperacionInvalidaException {
+    public void eliminaVendedores(@PathParam("id") int id) throws OperacionInvalidaException {
         vendedorEjb.eliminarVendedor(id);
-        return lv;
     }
 
     @GET
