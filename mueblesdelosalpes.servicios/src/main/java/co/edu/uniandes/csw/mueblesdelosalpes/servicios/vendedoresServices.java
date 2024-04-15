@@ -7,10 +7,10 @@ package co.edu.uniandes.csw.mueblesdelosalpes.servicios;
 
 import co.edu.uniandes.csw.mueblesdelosalpes.dto.Vendedor;
 import co.edu.uniandes.csw.mueblesdelosalpes.excepciones.OperacionInvalidaException;
-import co.edu.uniandes.csw.mueblesdelosalpes.logica.interfaces.IServicioVendedoresMockRemote;
+import co.edu.uniandes.csw.mueblesdelosalpes.logica.interfaces.IServicioVendedoresMockLocal;
 import java.util.List;
 import javax.ejb.EJB;
-import javax.ejb.Stateless;
+import javax.ejb.Stateful;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -25,22 +25,22 @@ import javax.ws.rs.core.MediaType;
  * @author USER
  */
 @Path("/sellers")
-@Stateless
+@Stateful
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class vendedoresServices {
-    private IServicioVendedoresMockRemote vendedorEjb;
+    
+    @EJB
+    private IServicioVendedoresMockLocal vendedorEjb;
 
     @POST
     @Path("/addSeller")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public List<Vendedor> agregaVendedores(List<Vendedor> lv) throws OperacionInvalidaException {
-
         for (Vendedor vende : lv) {
             vendedorEjb.agregarVendedor(vende);
         }
-
         return lv;
     }
 
@@ -48,15 +48,15 @@ public class vendedoresServices {
     @Path("/DeleteSeller/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-
-    public void eliminaVendedores(@PathParam("id") int id) throws OperacionInvalidaException {
+    public void eliminaVendedores(@PathParam("id") long id) throws OperacionInvalidaException {
         vendedorEjb.eliminarVendedor(id);
     }
-
+    
     @GET
-    @Path("/allSellers")
+    @Path("getTodosLosVendedores/")
     public List<Vendedor> getTodosLosVendedores() throws OperacionInvalidaException {
-        return vendedorEjb.getVendedores();
+        List <Vendedor> list = vendedorEjb.getVendedores();
+        return list;
     }
 
 }
