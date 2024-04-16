@@ -31,7 +31,7 @@ import javax.ws.rs.core.MediaType;
 public class vendedoresServices {
     
     @EJB
-    private IServicioVendedoresMockLocal vendedorEjb;
+    private IServicioVendedoresMockLocal vendeEjb;
 
     @POST
     @Path("/addSeller")
@@ -39,7 +39,7 @@ public class vendedoresServices {
     @Consumes(MediaType.APPLICATION_JSON)
     public List<Vendedor> agregaVendedores(List<Vendedor> lv) throws OperacionInvalidaException {
         for (Vendedor vende : lv) {
-            vendedorEjb.agregarVendedor(vende);
+            vendeEjb.agregarVendedor(vende);
         }
         return lv;
     }
@@ -49,13 +49,13 @@ public class vendedoresServices {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public void eliminaVendedores(@PathParam("id") long id) throws OperacionInvalidaException {
-        vendedorEjb.eliminarVendedor(id);
+        vendeEjb.eliminarVendedor(id);
     }
     
     @GET
     @Path("getTodosLosVendedores/")
     public List<Vendedor> getTodosLosVendedores() throws OperacionInvalidaException {
-        return vendedorEjb.getVendedores();
+        return vendeEjb.getVendedores();
     }
 
 }
