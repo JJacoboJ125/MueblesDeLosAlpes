@@ -68,7 +68,7 @@ public class ServicioVendedoresMock implements IServicioVendedoresMockRemote, IS
         }
         catch (OperacionInvalidaException ex)
         {
-            
+            throw new OperacionInvalidaException(ex.getMessage());
         }
     }
 
@@ -94,7 +94,7 @@ public class ServicioVendedoresMock implements IServicioVendedoresMockRemote, IS
      * Devuelve todos los vendedores del sistema
      * @return vendedores Vendedores del sistema
      */
-    
+    @Override
     public List<Vendedor> getVendedores()
     {
         return persistencia.findAll(Vendedor.class);
