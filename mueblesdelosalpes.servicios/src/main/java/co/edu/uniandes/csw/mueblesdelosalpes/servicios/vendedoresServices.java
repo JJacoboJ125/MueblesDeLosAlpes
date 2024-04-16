@@ -55,8 +55,7 @@ public class vendedoresServices {
     @GET
     @Path("getTodosLosVendedores/")
     public List<Vendedor> getTodosLosVendedores() throws OperacionInvalidaException {
-        List <Vendedor> list = vendedorEjb.getVendedores();
-        return list;
+        return vendedorEjb.getVendedores();
     }
 
 }
